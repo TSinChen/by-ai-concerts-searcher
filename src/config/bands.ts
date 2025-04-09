@@ -1,4 +1,5 @@
 export const bands = [
+  "ONE OK ROCK",
+  "Survive Said The Prophet",
   "My Chemical Romance",
-  // 在這裡添加更多樂團
 ];
