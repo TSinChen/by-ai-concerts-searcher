@@ -1,27 +1,34 @@
 {
-  "name": "by-ai-live-searcher",
+  "name": "by-ai-concerts-searcher",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
+    "dev:openai": "cross-env SEARCH_PROVIDER=openai next dev --turbopack",
+    "dev:gemini": "cross-env SEARCH_PROVIDER=gemini next dev --turbopack",
+    "build:openai": "cross-env SEARCH_PROVIDER=openai next build",
+    "build:gemini": "cross-env SEARCH_PROVIDER=gemini next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@google/genai": "^0.8.0",
+    "date-fns": "^4.1.0",
+    "next": "15.2.5",
+    "openai": "^4.93.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "next": "15.2.5"
+    "zod": "^3.24.2"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
+    "cross-env": "^7.0.3",
     "eslint": "^9",
     "eslint-config-next": "15.2.5",
-    "@eslint/eslintrc": "^3"
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }
