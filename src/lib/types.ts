@@ -7,5 +7,5 @@ export interface ConcertInfo {
 }
 
 export interface SearchProvider {
-  searchConcerts(bandName: string): Promise<ConcertInfo[]>;
+  searchConcerts(bandNames: string[]): Promise<ConcertInfo[]>;
 }

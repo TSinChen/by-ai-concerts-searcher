@@ -12,9 +12,8 @@ export const initializeSearchProvider = (
 
 export const getAllConcerts = async (): Promise<ConcertInfo[]> => {
   const provider = SearchProviderFactory.getInstance().getProvider();
-  const concertPromises = bands.map((band) => provider.searchConcerts(band));
-  const concertArrays = await Promise.all(concertPromises);
-  return concertArrays.flat();
+  const concerts = await provider.searchConcerts(bands);
+  return sortConcertsByDate(concerts);
 };
 
 export const sortConcertsByDate = (concerts: ConcertInfo[]): ConcertInfo[] => {
