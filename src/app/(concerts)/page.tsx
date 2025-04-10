@@ -1,6 +1,6 @@
 import { getAllConcerts, initializeSearchProvider } from "@/lib/concerts";
-import { ErrorDisplay } from "@/app/components/ui/error-display";
-import { ConcertList } from "@/app/components/concerts/concert-list";
+import { ErrorDisplay } from "@/components/error-display";
+import { ConcertList } from "@/app/(concerts)/_components/concert-list";
 
 // 頁面設定
 export const dynamic = "force-static";
