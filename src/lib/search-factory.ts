@@ -2,7 +2,7 @@ import { SearchProvider } from "./types";
 import { OpenAIProvider } from "./openai";
 import { GeminiProvider } from "./gemini";
 
-type SearchProviderType = "openai" | "gemini";
+export type SearchProviderType = "openai" | "gemini";
 
 /**
  * 搜尋提供者工廠類別
