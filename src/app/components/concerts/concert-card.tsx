@@ -1,5 +1,4 @@
-import { format } from "date-fns";
-import { zhTW } from "date-fns/locale";
+import dayjs from "dayjs";
 import { ConcertInfo } from "@/lib/types";
 
 interface ConcertCardProps {
@@ -7,13 +6,7 @@ interface ConcertCardProps {
 }
 
 export const ConcertCard = ({ concert }: ConcertCardProps) => {
-  const formattedDate = format(
-    new Date(concert.date),
-    "yyyy年MM月dd日 (EEEE)",
-    {
-      locale: zhTW,
-    }
-  );
+  const formattedDate = dayjs(concert.date).format("YYYY/MM/DD");
 
   return (
     <article
@@ -34,18 +27,6 @@ export const ConcertCard = ({ concert }: ConcertCardProps) => {
         <p className="text-gray-600">{concert.venue}</p>
         <p className="text-gray-600">{concert.city}</p>
       </div>
-
-      {concert.source && (
-        <a
-          href={concert.source}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors focus:ring-2 focus:ring-blue-400 focus:outline-none"
-          aria-label={`查看 ${concert.bandName} 演唱會的詳細資訊`}
-        >
-          查看來源
-        </a>
-      )}
     </article>
   );
 };

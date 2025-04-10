@@ -1,11 +1,11 @@
 /**
  * 生成搜尋演唱會資訊的提示詞
- * @param bandNames 樂團名稱陣列
+ * @param bandName 樂團名稱
  */
 export const generateSearchPrompt = (
-  bandNames: string[]
-) => `請幫我搜尋以下樂團未來一年內的演唱會資訊：
-${bandNames.map((name) => `- ${name}`).join("\n")}
+  bandName: string
+) => `請幫我搜尋以下樂團未來半年內的演唱會資訊：
+${bandName}
 
 請特別關注：
 1. 各大售票系統（如 KKTIX、ibon、拓元、寬宏等）
@@ -16,21 +16,22 @@ ${bandNames.map((name) => `- ${name}`).join("\n")}
 1. 只能回覆 JSON 格式
 2. 不要加入任何說明文字
 3. 不要在 JSON 前後加入任何其他內容
-4. JSON 必須符合以下格式：
+4. 只提供未來的演唱會資訊，不要包含已經過期的演唱會
+5. 城市名稱必須使用英文（例如：Taipei、Taichung、Kaohsiung 等）
+6. JSON 必須符合以下格式：
 
 {
   "concerts": [
     {
-      "bandName": "樂團名稱",
-      "date": "YYYY-MM-DD",
+      "bandName": "${bandName}",
+      "date": "YYYY-MM-DD（必須是未來日期）",
       "venue": "場地名稱",
-      "city": "城市名稱",
-      "source": "資訊來源網址"
+      "city": "城市名稱"
     }
   ]
 }
 
-如果找不到演唱會資訊，請只回覆：
+如果找不到未來的演唱會資訊，請只回覆：
 {
   "concerts": []
 }`;

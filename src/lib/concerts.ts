@@ -1,6 +1,7 @@
 import { bands } from "@/config/bands";
 import { ConcertInfo } from "./types";
 import { SearchProviderFactory } from "./search-factory";
+import dayjs from "dayjs";
 
 // 初始化搜尋提供者（在應用程式啟動時調用）
 export const initializeSearchProvider = (
@@ -16,10 +17,5 @@ export const getAllConcerts = async (): Promise<ConcertInfo[]> => {
   return sortConcertsByDate(concerts);
 };
 
-export const sortConcertsByDate = (concerts: ConcertInfo[]): ConcertInfo[] => {
-  return [...concerts].sort((a, b) => {
-    const dateA = new Date(a.date);
-    const dateB = new Date(b.date);
-    return dateA.getTime() - dateB.getTime();
-  });
-};
+export const sortConcertsByDate = (concerts: ConcertInfo[]): ConcertInfo[] =>
+  [...concerts].sort((a, b) => dayjs(a.date).diff(b.date));
