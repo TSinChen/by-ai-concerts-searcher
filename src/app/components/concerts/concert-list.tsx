@@ -1,5 +1,6 @@
-import { ConcertInfo } from "@/lib/types";
 import { ConcertCard } from "./concert-card";
+import { ConcertInfo } from "@/lib/types";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface ConcertListProps {
   concerts: ConcertInfo[];
@@ -14,11 +15,46 @@ export const ConcertList = ({ concerts }: ConcertListProps) => {
     );
   }
 
+  // 將演唱會按照樂團分組
+  const concertsByBand = concerts.reduce<Record<string, ConcertInfo[]>>(
+    (acc, concert) => {
+      if (!acc[concert.bandName]) {
+        acc[concert.bandName] = [];
+      }
+      acc[concert.bandName].push(concert);
+      return acc;
+    },
+    {}
+  );
+
+  // 獲取所有樂團名稱並排序
+  const bandNames = Object.keys(concertsByBand).sort();
+
   return (
-    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {concerts.map((concert, index) => (
-        <ConcertCard key={`${concert.bandName}-${index}`} concert={concert} />
+    <Tabs defaultValue={bandNames[0]} className="w-full">
+      <TabsList className="mb-4 flex flex-wrap gap-2">
+        {bandNames.map((bandName) => (
+          <TabsTrigger
+            key={bandName}
+            value={bandName}
+            className="px-4 py-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+          >
+            {bandName}
+          </TabsTrigger>
+        ))}
+      </TabsList>
+      {bandNames.map((bandName) => (
+        <TabsContent key={bandName} value={bandName}>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {concertsByBand[bandName].map((concert, index) => (
+              <ConcertCard
+                key={`${concert.bandName}-${index}`}
+                concert={concert}
+              />
+            ))}
+          </div>
+        </TabsContent>
       ))}
-    </div>
+    </Tabs>
   );
 };
