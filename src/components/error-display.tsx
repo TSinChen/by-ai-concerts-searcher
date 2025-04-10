@@ -1,6 +1,6 @@
-interface ErrorDisplayProps {
+type ErrorDisplayProps = {
   error: Error;
-}
+};
 
 export const ErrorDisplay = ({ error }: ErrorDisplayProps) => {
   return (

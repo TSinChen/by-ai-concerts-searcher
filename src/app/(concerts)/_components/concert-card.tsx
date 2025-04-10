@@ -1,9 +1,9 @@
 import dayjs from "dayjs";
 import { ConcertInfo } from "@/lib/types";
 
-interface ConcertCardProps {
+type ConcertCardProps = {
   concert: ConcertInfo;
-}
+};
 
 export const ConcertCard = ({ concert }: ConcertCardProps) => {
   const formattedDate = dayjs(concert.date).format("YYYY/MM/DD");

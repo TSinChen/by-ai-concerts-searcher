@@ -2,9 +2,9 @@ import { ConcertCard } from "./concert-card";
 import { ConcertInfo } from "@/lib/types";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-interface ConcertListProps {
+type ConcertListProps = {
   concerts: ConcertInfo[];
-}
+};
 
 export const ConcertList = ({ concerts }: ConcertListProps) => {
   if (concerts.length === 0) {

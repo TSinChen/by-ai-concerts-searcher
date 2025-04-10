@@ -1,6 +1,6 @@
-import { SearchProvider } from "./types";
 import { OpenAIProvider } from "./openai";
 import { GeminiProvider } from "./gemini";
+import { SearchProvider } from "./interfaces";
 
 export type SearchProviderType = "openai" | "gemini";
 

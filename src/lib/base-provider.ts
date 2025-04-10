@@ -1,4 +1,5 @@
-import { ConcertInfo, SearchProvider } from "./types";
+import { SearchProvider } from "./interfaces";
+import { ConcertInfo } from "./types";
 import dayjs from "dayjs";
 
 export const MAX_RETRIES = 3;
